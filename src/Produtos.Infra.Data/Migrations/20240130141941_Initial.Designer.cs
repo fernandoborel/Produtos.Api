@@ -12,7 +12,7 @@ using Produtos.Infra.Data.Contexts;
 namespace Produtos.Infra.Data.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20240129191147_Initial")]
+    [Migration("20240130141941_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
