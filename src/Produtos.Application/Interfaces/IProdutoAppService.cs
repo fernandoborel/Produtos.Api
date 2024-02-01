@@ -6,10 +6,10 @@ namespace Produtos.Application.Interfaces
     public interface IProdutoAppService : IDisposable
     {
         Task Adicionar(CriarProdutoCommand command);
-        //Task Atualizar(Produto produto);
-        //Task Remover(Guid id);
+        Task Atualizar(AlterarProdutoCommand command);
+        Task Remover(Guid id);
 
         Task<IEnumerable<Produto>> ObterTodos();
-        //Task<Produto> ObterPorId(Guid id);
+        Task<Produto> ObterPorId(Guid id);
     }
 }
