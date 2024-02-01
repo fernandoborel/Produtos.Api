@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Produtos.Application\Produtos.Application.csproj" />
     <ProjectReference Include="..\Produtos.Domain\Produtos.Domain.csproj" />
     <ProjectReference Include="..\Produtos.Infra.Data\Produtos.Infra.Data.csproj" />
     <ProjectReference Include="..\Produtos.Tests\Produtos.Tests.csproj" />

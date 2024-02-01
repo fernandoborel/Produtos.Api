@@ -1,4 +1,5 @@
 ﻿using Produtos.Application.Commands;
+using Produtos.Domain.Models;
 
 namespace Produtos.Application.Interfaces
 {
@@ -8,7 +9,7 @@ namespace Produtos.Application.Interfaces
         //Task Atualizar(Produto produto);
         //Task Remover(Guid id);
 
-        //Task<IEnumerable<Produto>> ObterTodos();
+        Task<IEnumerable<Produto>> ObterTodos();
         //Task<Produto> ObterPorId(Guid id);
     }
 }

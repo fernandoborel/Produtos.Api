@@ -12,9 +12,5 @@ namespace Produtos.Infra.Data.Repositories
         {
             _context = context;
         }
-
-        
-
-
     }
 }

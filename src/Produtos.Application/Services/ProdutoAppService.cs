@@ -27,5 +27,11 @@ namespace Produtos.Application.Services
         {
             _produtoDomainService.Dispose();
         }
+
+        public async Task<IEnumerable<Produto>> ObterTodos()
+        {
+            var produtos = await _produtoDomainService.ObterTodos();
+            return produtos;
+        }
     }
 }
