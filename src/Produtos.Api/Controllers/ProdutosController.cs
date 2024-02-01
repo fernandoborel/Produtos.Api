@@ -31,5 +31,25 @@ namespace Produtos.Api.Controllers
                 message = "Produto cadastrado com sucesso!", command
             });
         }
+
+        [HttpPut("atualizar")] // api/produtos/atualizar
+        public async Task<IActionResult> Put(AlterarProdutoCommand command)
+        {
+            await _produtoAppService.Atualizar(command);
+            return StatusCode(200, new
+            {
+                message = "Produto atualizado com sucesso!", command
+            });
+        }
+
+        [HttpDelete("remover/{id}")] // api/produtos/remover/{id}
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _produtoAppService.Remover(id);
+            return StatusCode(200, new
+            {
+                message = "Produto removido com sucesso!", id
+            });
+        }
     }
 }
