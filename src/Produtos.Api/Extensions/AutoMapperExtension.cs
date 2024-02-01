@@ -1,4 +1,7 @@
-﻿namespace Produtos.Api.Extensions
+﻿using Produtos.Application.Commands;
+using Produtos.Domain.Models;
+
+namespace Produtos.Api.Extensions
 {
     /// <summary>
     /// Classe para extensão do AutoMapper
@@ -10,6 +13,11 @@
             //configurar o AutoMapper
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            //configurar o mapeamento
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.CreateMap<CriarProdutoCommand, Produto>();
+            });
         }
     }
 }

@@ -5,12 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//caixa baixa nas rotas
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 #region Extensions
 
+SwaggerExtension.AddSwagger(builder);
+EntityFrameworkExtension.AddEntityFramework(builder);
 AutoMapperExtension.AddAutoMapper(builder);
 CorsExtension.AddCors(builder);
-EntityFrameworkExtension.AddEntityFramework(builder);
-SwaggerExtension.AddSwagger(builder);
 
 #endregion
 

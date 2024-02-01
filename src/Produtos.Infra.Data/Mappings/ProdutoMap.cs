@@ -32,10 +32,12 @@ namespace Produtos.Infra.Data.Mappings
 
             builder.Property(p => p.DataCriacao)
                 .HasColumnName("DATACRIACAO")
+                .HasColumnType("datetime2")
                 .IsRequired();
 
             builder.Property(p => p.DataUltimaAlteracao)
                 .HasColumnName("DATAULTIMAALTERACAO")
+                .HasColumnType("datetime2")
                 .IsRequired();
         }
     }
