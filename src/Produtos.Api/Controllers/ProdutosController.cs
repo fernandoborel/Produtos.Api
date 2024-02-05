@@ -22,6 +22,15 @@ namespace Produtos.Api.Controllers
             return StatusCode(200, result);
         }
 
+
+        [HttpGet("obter-produto/{id}")] // api/produtos/obter-produto/{id}
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var result = await _produtoAppService.ObterPorId(id);
+            return StatusCode(200, result);
+        }
+
+
         [HttpPost("cadastrar")] // api/produtos/cadastrar
         public async Task<IActionResult> Post(CriarProdutoCommand command)
         {
@@ -32,6 +41,7 @@ namespace Produtos.Api.Controllers
             });
         }
 
+
         [HttpPut("atualizar")] // api/produtos/atualizar
         public async Task<IActionResult> Put(AlterarProdutoCommand command)
         {
@@ -41,6 +51,7 @@ namespace Produtos.Api.Controllers
                 message = "Produto atualizado com sucesso!", command
             });
         }
+
 
         [HttpDelete("remover/{id}")] // api/produtos/remover/{id}
         public async Task<IActionResult> Delete(Guid id)
