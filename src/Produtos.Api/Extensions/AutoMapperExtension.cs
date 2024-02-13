@@ -16,7 +16,19 @@ namespace Produtos.Api.Extensions
             //configurar o mapeamento
             builder.Services.AddAutoMapper(cfg =>
             {
-                cfg.CreateMap<CriarProdutoCommand, Produto>();
+                cfg.CreateMap<CriarProdutoCommand, Produto>()
+                    .AfterMap((src, dest) =>
+                    {
+                        dest.IdProduto = Guid.NewGuid();
+                        dest.DataCriacao = DateTime.Now;
+                        dest.DataUltimaAlteracao = DateTime.Now;
+                    });
+                
+                cfg.CreateMap<Produto, GetProdutoCommand>()
+                .AfterMap((src, dest) =>
+                {
+                        dest.Total = (src.Preco * src.Quantidade);
+                });
             });
         }
     }
