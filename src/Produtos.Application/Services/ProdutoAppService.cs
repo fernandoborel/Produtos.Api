@@ -19,8 +19,8 @@ namespace Produtos.Application.Services
 
         public async Task Adicionar(CriarProdutoCommand command)
         {
-            var usuario = _mapper.Map<Produto>(command);
-            await _produtoDomainService.Adicionar(usuario);
+            var produto = _mapper.Map<Produto>(command);
+            await _produtoDomainService.Adicionar(produto);
         }
 
         public async Task Atualizar(AlterarProdutoCommand command)

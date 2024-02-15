@@ -29,6 +29,12 @@ namespace Produtos.Api.Extensions
                 {
                         dest.Total = (src.Preco * src.Quantidade);
                 });
+
+                cfg.CreateMap<CriarUsuarioCommand, Usuario>()
+                .AfterMap((src, dest) =>
+                {
+                        dest.IdUsuario = Guid.NewGuid();
+                });
             });
         }
     }

@@ -14,6 +14,7 @@ SwaggerExtension.AddSwagger(builder);
 EntityFrameworkExtension.AddEntityFramework(builder);
 AutoMapperExtension.AddAutoMapper(builder);
 CorsExtension.AddCors(builder);
+JwtConfiguration.AddJwt(builder);
 
 #endregion
 
@@ -24,6 +25,7 @@ app.UseSwaggerUI();
 
 CorsExtension.UseCors(app);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
