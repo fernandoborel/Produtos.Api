@@ -26,6 +26,11 @@ namespace Produtos.Api.Configurations
             builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
             builder.Services.AddTransient<IProdutoAppService, ProdutoAppService>();
             builder.Services.AddTransient<IProdutoDomainService, ProdutoDomainService>();
+
+
+            builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            builder.Services.AddTransient<IUsuarioAppService, UsuarioAppService>();
+            builder.Services.AddTransient<IUsuarioDomainService, UsuarioDomainService>();
         }
     }
 }
