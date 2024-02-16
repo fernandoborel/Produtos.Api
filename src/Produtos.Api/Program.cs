@@ -14,7 +14,7 @@ SwaggerExtension.AddSwagger(builder);
 EntityFrameworkExtension.AddEntityFramework(builder);
 AutoMapperExtension.AddAutoMapper(builder);
 CorsExtension.AddCors(builder);
-JwtConfiguration.AddJwt(builder);
+JwtConfiguration.AddJwtBearerSecurity(builder);
 
 #endregion
 
