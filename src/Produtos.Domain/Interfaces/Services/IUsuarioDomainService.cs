@@ -4,7 +4,7 @@ namespace Produtos.Domain.Interfaces.Services;
 
 public interface IUsuarioDomainService : IDisposable
 {
-    Task<Usuario> Get(string login, string senha);
+    Task<AuthorizationModel> AutenticarUsuarioAsync(string login, string senha);
 
     Task Adicionar(Usuario usuario);
     Task Atualizar(Usuario usuario);

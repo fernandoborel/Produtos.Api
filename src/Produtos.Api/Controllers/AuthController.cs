@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Produtos.Application.Commands;
 using Produtos.Application.Interfaces;
+using Produtos.Domain.Models;
 using Produtos.Infra.Data.Utils;
 
 namespace Produtos.Api.Controllers
@@ -10,21 +12,35 @@ namespace Produtos.Api.Controllers
     {
         private readonly IUsuarioAppService _usuarioAppService;
 
-        public AuthController(IUsuarioAppService usuarioAppService)
-        {
-            _usuarioAppService = usuarioAppService;
-        }
+        public AuthController(IUsuarioAppService usuarioAppService) 
+            => _usuarioAppService = usuarioAppService;
 
         [HttpPost("autenticar")]
-        public async Task<IActionResult> Post(string login, string senha)
+        public async Task<IActionResult> Post(AutenticarUsuarioCommand command)
         {
-            var senhaCriptografada = MD5Util.Get(senha);
-
-            await _usuarioAppService.ObterPorLogin(login, senhaCriptografada);
-            return StatusCode(201, new
+            try
             {
-                message = "Usuário autenticado com sucesso!",
-            });
+                var usuario = await _usuarioAppService.AutenticarUsuarioAsync(command);
+
+                var response = new AutenticarUsuarioResponse
+                {
+                    Message = "Usuário autenticado com sucesso.",
+                    Model = new AuthorizationModel
+                    {
+                        IdUsuario = usuario.IdUsuario,
+                        Nome = usuario.Nome,
+                        Login = usuario.Login,
+                        DataHoraAcesso = usuario.DataHoraAcesso,
+                        AccessToken = usuario.AccessToken
+                    }
+                };
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

@@ -57,10 +57,9 @@ public class UsuarioAppService : IUsuarioAppService
         return usuario;
     }
 
-    public async Task<Usuario> ObterPorLogin(string login, string senha)
+    public async Task<AuthorizationModel> AutenticarUsuarioAsync(AutenticarUsuarioCommand command)
     {
-        var usuario = await _usuarioDomainService.Get(login, senha);
-        return usuario;
+        return await _usuarioDomainService.AutenticarUsuarioAsync(command.Login, command.Senha);
     }
 
     public async Task<IEnumerable<Usuario>> ObterTodos()
