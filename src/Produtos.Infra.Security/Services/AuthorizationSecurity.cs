@@ -28,7 +28,7 @@ public class AuthorizationSecurity : IAuthorizationSecurity
             //Gravar os dados do usuário no token
             Subject = new ClaimsIdentity(new Claim[]
             {
-                    new Claim(ClaimTypes.Name, usuario.Login), // Email do usuário autenticado
+                    new Claim(ClaimTypes.Name, usuario.Login), // Login do usuário autenticado
                     new Claim(ClaimTypes.Role, "USER") // Perfil do usuário autenticado
             }),
             //definindo a data e hora de expiração
