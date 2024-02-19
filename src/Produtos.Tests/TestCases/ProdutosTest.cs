@@ -6,6 +6,7 @@ using Produtos.Domain.Models;
 using Produtos.Tests.Helpers;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using Xunit;
 
@@ -22,6 +23,17 @@ namespace Produtos.Tests.TestCases
         public ProdutosTest()
         {
             _client = new HttpClient();
+
+            #region Adicionando o token de autenticação
+
+            var loginTest = new LoginTest();
+            var response = loginTest.Post_Login_Returns_Ok().Result.Model.AccessToken;
+
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue
+                ("Bearer", response);
+
+            #endregion
+
             _faker = new Faker("pt_BR");
         }
 
@@ -131,7 +143,6 @@ namespace Produtos.Tests.TestCases
             result
                 .StatusCode
                 .Should();
-                //.Be(HttpStatusCode.UnprocessableEntity);
 
             #endregion
         }
@@ -180,7 +191,6 @@ namespace Produtos.Tests.TestCases
             result
                 .StatusCode
                 .Should();
-                //.Be(HttpStatusCode.UnprocessableEntity);
 
             #endregion
         }
