@@ -8,5 +8,8 @@
         public int Quantidade { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime DataUltimaAlteracao { get; set; } = DateTime.Now;
+
+        // Relacionamento: um Produto pode ter vários Históricos
+        public virtual ICollection<Historico> Historicos { get; set; } = new List<Historico>();
     }
 }
