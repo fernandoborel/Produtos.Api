@@ -16,9 +16,11 @@ namespace Produtos.Infra.Data.Contexts
             //classe de mapeamento
             modelBuilder.ApplyConfiguration(new ProdutoMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new HistoricoMap());
         }
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Historico> Historicos { get; set; }
     }
 }
