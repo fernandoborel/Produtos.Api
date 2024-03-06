@@ -15,6 +15,9 @@ public class HistoricoRepository : BaseRepository<Historico>, IHistoricoReposito
 
     public async Task<IEnumerable<Historico>> GetByProdutoId(Guid produtoId)
     {
-        return await _context.Historicos.Where(h => h.IdProduto == produtoId).ToListAsync();
+        return await _context.Historicos
+            .Where(h => h.IdProduto == produtoId)
+            .Include(h => h.Produto)
+            .ToListAsync();
     }
 }
