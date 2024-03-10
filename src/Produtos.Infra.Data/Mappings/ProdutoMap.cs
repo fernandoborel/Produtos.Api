@@ -38,6 +38,10 @@ public class ProdutoMap : IEntityTypeConfiguration<Produto>
             .HasColumnType("datetime2")
             .IsRequired();
 
+        builder.Property(p => p.Foto)
+            .HasColumnName("FOTO")
+            .IsRequired(false);
+
         // Mapeando a relação com a entidade Historico
         builder.HasMany(p => p.Historicos)
             .WithOne(h => h.Produto)

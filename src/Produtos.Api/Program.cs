@@ -25,6 +25,7 @@ app.UseSwaggerUI();
 
 CorsExtension.UseCors(app);
 
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 
