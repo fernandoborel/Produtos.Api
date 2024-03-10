@@ -19,7 +19,16 @@ namespace Produtos.Application.Services
 
         public async Task Adicionar(CriarProdutoCommand command)
         {
-            var produto = _mapper.Map<Produto>(command);
+            var foto = command.Foto?.OpenReadStream();
+
+            var produto = new Produto
+            {
+                Nome = command.Nome,
+                Preco = command.Preco,
+                Quantidade = command.Quantidade,
+                Foto = LerFotoComoArrayDeBytes(foto),
+            };
+            
             await _produtoDomainService.Adicionar(produto);
         }
 
@@ -62,5 +71,15 @@ namespace Produtos.Application.Services
             var produtos = await _produtoDomainService.ObterTodos();
             return produtos;
         }
+
+        private byte[] LerFotoComoArrayDeBytes(Stream fotoStream)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                fotoStream?.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
     }
 }

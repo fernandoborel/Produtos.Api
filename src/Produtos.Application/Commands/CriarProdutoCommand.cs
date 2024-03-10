@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Produtos.Application.Commands
 {
@@ -13,5 +14,8 @@ namespace Produtos.Application.Commands
 
         [Required(ErrorMessage = "O campo Quantidade é obrigatório")]
         public int Quantidade { get; set; }
+
+        [Required(ErrorMessage = "O campo Foto é obrigatório")]
+        public IFormFile Foto { get; set; }
     }
 }
