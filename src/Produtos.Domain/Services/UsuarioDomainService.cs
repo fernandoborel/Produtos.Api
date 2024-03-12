@@ -44,6 +44,12 @@ public class UsuarioDomainService : IUsuarioDomainService
         return usuario;
     }
 
+    public async Task<Usuario> ObterPorLogin(string login)
+    {
+        var usuario = await _usuarioRepository.Get(login);
+        return usuario;
+    }
+
     public async Task<IEnumerable<Usuario>> ObterTodos()
     {
         return await _usuarioRepository.GetAllAsync();

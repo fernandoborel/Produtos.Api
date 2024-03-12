@@ -19,6 +19,12 @@ public class UsuarioAppService : IUsuarioAppService
 
     public async Task Adicionar(CriarUsuarioCommand command)
     {
+        var login = await _usuarioDomainService.ObterPorLogin(command.Login);
+        if (login != null)
+        {
+            throw new ApplicationException("Login já cadastrado!");
+        }
+
         var usuario = _mapper.Map<Usuario>(command);
         await _usuarioDomainService.Adicionar(usuario);
     }
@@ -66,5 +72,11 @@ public class UsuarioAppService : IUsuarioAppService
     {
         var usuarios = await _usuarioDomainService.ObterTodos();
         return usuarios;
+    }
+
+    public async Task<Usuario> ObterPorLogin(string login)
+    {
+        var usuario = await _usuarioDomainService.ObterPorLogin(login);
+        return usuario;
     }
 }

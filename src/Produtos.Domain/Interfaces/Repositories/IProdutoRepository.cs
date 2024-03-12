@@ -1,11 +1,8 @@
 ﻿using Produtos.Domain.Models;
 
-namespace Produtos.Domain.Interfaces.Repositories
+namespace Produtos.Domain.Interfaces.Repositories;
+
+
+public interface IProdutoRepository : IBaseRepository<Produto>
 {
-    /// <summary>
-    /// Interface de repositório de produtos
-    /// </summary>
-    public interface IProdutoRepository : IBaseRepository<Produto>
-    {
-    }
 }

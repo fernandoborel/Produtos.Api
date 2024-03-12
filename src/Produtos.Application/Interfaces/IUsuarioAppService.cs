@@ -11,5 +11,6 @@ public interface IUsuarioAppService : IDisposable
 
     Task<IEnumerable<Usuario>> ObterTodos();
     Task<Usuario> ObterPorId(Guid id);
+    Task<Usuario> ObterPorLogin(string login);
     Task<AuthorizationModel> AutenticarUsuarioAsync(AutenticarUsuarioCommand command);
 }

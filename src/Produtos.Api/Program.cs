@@ -1,5 +1,6 @@
 using Produtos.Api.Configurations;
 using Produtos.Api.Extensions;
+using Produtos.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,11 +27,10 @@ app.UseSwaggerUI();
 CorsExtension.UseCors(app);
 
 app.UseStaticFiles();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
-
-//produtosapi2024-001

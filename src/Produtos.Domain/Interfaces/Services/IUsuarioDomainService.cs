@@ -11,5 +11,6 @@ public interface IUsuarioDomainService : IDisposable
     Task Remover(Guid id);
 
     Task<IEnumerable<Usuario>> ObterTodos();
+    Task<Usuario> ObterPorLogin(string login);
     Task<Usuario> ObterPorId(Guid id);
 }
