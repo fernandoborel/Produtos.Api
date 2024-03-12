@@ -26,6 +26,11 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
         usuario.Senha = MD5Util.Get(usuario.Senha);
         await base.UpdateAsync(usuario);
     }
+    public async Task<Usuario> Get(string login)
+    {
+        return await _context.Usuarios
+            .FirstOrDefaultAsync(u => u.Login.Equals(login));
+    }
 
     public async Task<Usuario> Get(string login, string senha)
     {
@@ -34,4 +39,5 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
         return await _context.Usuarios
             .FirstOrDefaultAsync(u => u.Login.Equals(login) && u.Senha.Equals(senha));
     }
+
 }

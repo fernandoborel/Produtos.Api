@@ -7,30 +7,29 @@ using Produtos.Domain.Services;
 using Produtos.Infra.Data.Contexts;
 using Produtos.Infra.Data.Repositories;
 
-namespace Produtos.Api.Configurations
+namespace Produtos.Api.Configurations;
+
+/// <summary>
+/// Classe de configuração do Entity Framework
+/// </summary>
+public static class EntityFrameworkExtension
 {
-    /// <summary>
-    /// Classe de configuração do Entity Framework
-    /// </summary>
-    public static class EntityFrameworkExtension
+    public static void AddEntityFramework(WebApplicationBuilder builder)
     {
-        public static void AddEntityFramework(WebApplicationBuilder builder)
+        var connectionString = builder.Configuration.GetConnectionString("ApiProdutos");
+
+        builder.Services.AddDbContext<SqlServerContext>(options =>
         {
-            var connectionString = builder.Configuration.GetConnectionString("ApiProdutos");
+            options.UseSqlServer(connectionString);
+        });
 
-            builder.Services.AddDbContext<SqlServerContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
-
-            builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
-            builder.Services.AddTransient<IProdutoAppService, ProdutoAppService>();
-            builder.Services.AddTransient<IProdutoDomainService, ProdutoDomainService>();
+        builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
+        builder.Services.AddTransient<IProdutoAppService, ProdutoAppService>();
+        builder.Services.AddTransient<IProdutoDomainService, ProdutoDomainService>();
 
 
-            builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            builder.Services.AddTransient<IUsuarioAppService, UsuarioAppService>();
-            builder.Services.AddTransient<IUsuarioDomainService, UsuarioDomainService>();
-        }
+        builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+        builder.Services.AddTransient<IUsuarioAppService, UsuarioAppService>();
+        builder.Services.AddTransient<IUsuarioDomainService, UsuarioDomainService>();
     }
 }
