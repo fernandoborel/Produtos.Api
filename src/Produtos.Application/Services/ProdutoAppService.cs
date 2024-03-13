@@ -25,6 +25,7 @@ public class ProdutoAppService : IProdutoAppService
         {
             Nome = command.Nome,
             Preco = command.Preco,
+            Categoria = command.Categoria,
             Quantidade = command.Quantidade,
             Foto = LerFotoComoArrayDeBytes(foto),
         };
@@ -40,7 +41,9 @@ public class ProdutoAppService : IProdutoAppService
         {
             produto.Nome = command.Nome;
             produto.Preco = command.Preco;
+            produto.Categoria = command.Categoria;
             produto.Quantidade = command.Quantidade;
+            produto.Ativo = command.Ativo;
 
             await _produtoDomainService.Atualizar(produto);
         }
@@ -81,4 +84,21 @@ public class ProdutoAppService : IProdutoAppService
         }
     }
 
+    public async Task<IEnumerable<Produto>> ObterPorCategoria(string categoria)
+    {
+        var cat = await _produtoDomainService.ObterCategoria(categoria);
+        return cat;
+    }
+
+    public async Task<IEnumerable<Produto>> ObterPorAtivo(int ativo)
+    {
+        var atv = await _produtoDomainService.ObterAtivos(ativo);
+        return atv;
+    }
+
+    public async Task<IEnumerable<Produto>> ObterPorNome(string nome)
+    {
+        var nme = await _produtoDomainService.ObterNome(nome);
+        return nme;
+    }
 }

@@ -11,4 +11,8 @@ public interface IProdutoAppService : IDisposable
 
     Task<IEnumerable<Produto>> ObterTodos();
     Task<Produto> ObterPorId(Guid id);
+
+    Task<IEnumerable<Produto>> ObterPorNome(string nome);
+    Task<IEnumerable<Produto>> ObterPorCategoria(string categoria);
+    Task<IEnumerable<Produto>> ObterPorAtivo(int ativo);
 }
