@@ -12,6 +12,10 @@ public class CriarProdutoCommand
     [Required(ErrorMessage = "O campo Preço é obrigatório")]
     public decimal Preco { get; set; }
 
+    [Required(ErrorMessage = "O campo Categoria é obrigatório")]
+    [Length(3, 100, ErrorMessage = "O campo Categoria deve ter entre 3 e 100 caracteres")]
+    public string Categoria { get; set; }
+
     [Required(ErrorMessage = "O campo Quantidade é obrigatório")]
     public int Quantidade { get; set; }
 

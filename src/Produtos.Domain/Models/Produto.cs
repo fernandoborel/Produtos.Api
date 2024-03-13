@@ -5,7 +5,9 @@ public class Produto
     public Guid IdProduto { get; set; }
     public string Nome { get; set; }
     public decimal Preco { get; set; }
+    public string Categoria { get; set; }
     public int Quantidade { get; set; }
+    public int Ativo { get; set; } = 1;
     public DateTime DataCriacao { get; set; } = DateTime.Now;
     public DateTime DataUltimaAlteracao { get; set; } = DateTime.Now;
 

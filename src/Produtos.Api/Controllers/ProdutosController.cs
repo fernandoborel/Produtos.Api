@@ -17,6 +17,8 @@ public class ProdutosController : ControllerBase
         _produtoAppService = produtoAppService;
     }
 
+    #region Get
+
     [HttpGet("obter-produtos")]
     public async Task<IActionResult> Get()
     {
@@ -31,6 +33,29 @@ public class ProdutosController : ControllerBase
         var result = await _produtoAppService.ObterPorId(id);
         return StatusCode(200, result);
     }
+
+    [HttpGet("obter-por-nome/{nome}")] // api/produtos/obter-por-nome/{nome}
+    public async Task<IActionResult> GetByName(string nome)
+    {
+        var result = await _produtoAppService.ObterPorNome(nome);
+        return StatusCode(200, result);
+    }
+
+    [HttpGet("obter-por-categoria/{categoria}")] // api/produtos/obter-por-categoria/{categoria}
+    public async Task<IActionResult> Get(string categoria)
+    {
+        var result = await _produtoAppService.ObterPorCategoria(categoria);
+        return StatusCode(200, result);
+    }
+
+    [HttpGet("obter-por-ativo/{ativo}")] // api/produtos/obter-por-ativo/{ativo}
+    public async Task<IActionResult> Get(int ativo)
+    {
+        var result = await _produtoAppService.ObterPorAtivo(ativo);
+        return StatusCode(200, result);
+    }
+
+    #endregion
 
 
     [HttpPost("cadastrar")] // api/produtos/cadastrar

@@ -37,7 +37,9 @@ public class ProdutoDomainService : IProdutoDomainService
 
             produtoExistente.Nome = produto.Nome;
             produtoExistente.Preco = produto.Preco;
+            produtoExistente.Categoria = produto.Categoria;
             produtoExistente.Quantidade = produto.Quantidade;
+            produtoExistente.Ativo = produto.Ativo;
             produtoExistente.DataUltimaAlteracao = DateTime.Now;
 
             await _produtoRepository.UpdateAsync(produtoExistente);
@@ -64,5 +66,23 @@ public class ProdutoDomainService : IProdutoDomainService
     public async Task<IEnumerable<Produto>> ObterTodos()
     {
         return await _produtoRepository.GetAllAsync();
+    }
+
+    public async Task<IEnumerable<Produto>> ObterCategoria(string categoria)
+    {
+        var cat = await _produtoRepository.GetCategoriaAsync(categoria);
+        return cat;
+    }
+
+    public async Task<IEnumerable<Produto>> ObterAtivos(int ativo)
+    {
+        var atv = await _produtoRepository.GetAtivo(ativo);
+        return atv;
+    }
+
+    public async Task<IEnumerable<Produto>> ObterNome(string nome)
+    {
+        var prod = await _produtoRepository.GetByNameAsync(nome);
+        return prod;
     }
 }
