@@ -32,5 +32,9 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
             .HasColumnName("Senha")
             .HasMaxLength(40)
             .IsRequired();
+
+        builder.Property(p => p.Foto)
+            .HasColumnName("FOTO")
+            .IsRequired(false);
     }
 }

@@ -25,7 +25,16 @@ public class UsuarioAppService : IUsuarioAppService
             throw new ApplicationException("Login já cadastrado!");
         }
 
-        var usuario = _mapper.Map<Usuario>(command);
+        var foto = command.Foto?.OpenReadStream();
+
+        var usuario = new Usuario
+        {
+            Nome = command.Nome,
+            Login = command.Login,
+            Senha = command.Senha,
+            Foto = LerFotoComoArrayDeBytes(foto),
+        };
+
         await _usuarioDomainService.Adicionar(usuario);
     }
 
@@ -78,5 +87,14 @@ public class UsuarioAppService : IUsuarioAppService
     {
         var usuario = await _usuarioDomainService.ObterPorLogin(login);
         return usuario;
+    }
+
+    private byte[] LerFotoComoArrayDeBytes(Stream fotoStream)
+    {
+        using (var memoryStream = new MemoryStream())
+        {
+            fotoStream?.CopyTo(memoryStream);
+            return memoryStream.ToArray();
+        }
     }
 }

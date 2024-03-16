@@ -9,5 +9,6 @@ public class Usuario
 	public string Login { get; set; }
 	public string Senha { get; set; }
 
-	#endregion
+    public byte[] Foto { get; set; }
+    #endregion
 }
