@@ -24,4 +24,31 @@ public class LoginController : ControllerBase
             message = "Usuário cadastrado com sucesso!", command
         });
     }
+
+    [HttpGet("obter-usuario/{id}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var result = await _usuarioAppService.ObterPorId(id);
+        return StatusCode(200, result);
+    }
+
+    [HttpPut("atualizar")]
+    public async Task<IActionResult> Put(AlterarUsuarioCommand command)
+    {
+        await _usuarioAppService.Atualizar(command);
+        return StatusCode(200, new
+        {
+            message = "Usuário atualizado com sucesso!", command
+        });
+    }
+
+    [HttpDelete("excluir/{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _usuarioAppService.Remover(id);
+        return StatusCode(200, new
+        {
+            message = "Usuário excluído com sucesso!", id
+        });
+    }
 }
