@@ -37,6 +37,7 @@ public class ProdutoDomainService : IProdutoDomainService
 
             produtoExistente.Nome = produto.Nome;
             produtoExistente.Preco = produto.Preco;
+            produtoExistente.Descricao = produto.Descricao;
             produtoExistente.Categoria = produto.Categoria;
             produtoExistente.Quantidade = produto.Quantidade;
             produtoExistente.Ativo = produto.Ativo;

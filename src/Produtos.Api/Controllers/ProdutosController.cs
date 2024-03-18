@@ -5,7 +5,7 @@ using Produtos.Application.Interfaces;
 
 namespace Produtos.Api.Controllers;
 
-[Authorize]
+//[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class ProdutosController : ControllerBase
