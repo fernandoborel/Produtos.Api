@@ -24,6 +24,11 @@ public class ProdutoMap : IEntityTypeConfiguration<Produto>
             .HasColumnType("decimal(18,2)")
             .IsRequired();
 
+        builder.Property(p => p.Descricao)
+            .HasColumnName("DESCRICAO")
+            .HasMaxLength(500)
+            .IsRequired();
+
         builder.Property(p => p.Categoria)
             .HasColumnName("CATEGORIA")
             .HasMaxLength(150)

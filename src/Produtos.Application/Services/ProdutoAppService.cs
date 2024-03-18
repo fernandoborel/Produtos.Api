@@ -25,6 +25,7 @@ public class ProdutoAppService : IProdutoAppService
         {
             Nome = command.Nome,
             Preco = command.Preco,
+            Descricao = command.Descricao,
             Categoria = command.Categoria,
             Quantidade = command.Quantidade,
             Foto = LerFotoComoArrayDeBytes(foto),
@@ -41,6 +42,7 @@ public class ProdutoAppService : IProdutoAppService
         {
             produto.Nome = command.Nome;
             produto.Preco = command.Preco;
+            produto.Descricao = command.Descricao;
             produto.Categoria = command.Categoria;
             produto.Quantidade = command.Quantidade;
             produto.Ativo = command.Ativo;
