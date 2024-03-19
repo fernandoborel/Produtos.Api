@@ -5,7 +5,7 @@ using Produtos.Application.Interfaces;
 
 namespace Produtos.Api.Controllers;
 
-//[Authorize]
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class ProdutosController : ControllerBase
@@ -17,7 +17,6 @@ public class ProdutosController : ControllerBase
         _produtoAppService = produtoAppService;
     }
 
-    #region Get
 
     [HttpGet("obter-produtos")]
     public async Task<IActionResult> Get()
@@ -27,38 +26,15 @@ public class ProdutosController : ControllerBase
     }
 
 
-    [HttpGet("obter-produto/{id}")] // api/produtos/obter-produto/{id}
+    [HttpGet("obter-produto/{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
         var result = await _produtoAppService.ObterPorId(id);
         return StatusCode(200, result);
     }
 
-    [HttpGet("obter-por-nome/{nome}")] // api/produtos/obter-por-nome/{nome}
-    public async Task<IActionResult> GetByName(string nome)
-    {
-        var result = await _produtoAppService.ObterPorNome(nome);
-        return StatusCode(200, result);
-    }
 
-    [HttpGet("obter-por-categoria/{categoria}")] // api/produtos/obter-por-categoria/{categoria}
-    public async Task<IActionResult> Get(string categoria)
-    {
-        var result = await _produtoAppService.ObterPorCategoria(categoria);
-        return StatusCode(200, result);
-    }
-
-    [HttpGet("obter-por-ativo/{ativo}")] // api/produtos/obter-por-ativo/{ativo}
-    public async Task<IActionResult> Get(int ativo)
-    {
-        var result = await _produtoAppService.ObterPorAtivo(ativo);
-        return StatusCode(200, result);
-    }
-
-    #endregion
-
-
-    [HttpPost("cadastrar")] // api/produtos/cadastrar
+    [HttpPost("cadastrar")]
     public async Task<IActionResult> Post(CriarProdutoCommand command)
     {
         await _produtoAppService.Adicionar(command);
@@ -69,7 +45,7 @@ public class ProdutosController : ControllerBase
     }
 
 
-    [HttpPut("atualizar")] // api/produtos/atualizar
+    [HttpPut("atualizar")]
     public async Task<IActionResult> Put(AlterarProdutoCommand command)
     {
         await _produtoAppService.Atualizar(command);
@@ -80,7 +56,7 @@ public class ProdutosController : ControllerBase
     }
 
 
-    [HttpDelete("remover/{id}")] // api/produtos/remover/{id}
+    [HttpDelete("remover/{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await _produtoAppService.Remover(id);
